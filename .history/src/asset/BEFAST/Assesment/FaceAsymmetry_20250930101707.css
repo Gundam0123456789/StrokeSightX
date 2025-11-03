@@ -1,0 +1,236 @@
+.face-asymmetry-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #ffffff;
+    padding: 2rem;
+    font-family: 'Prompt', sans-serif;
+  }
+  
+  .face-asymmetry-title {
+    font-family: "Prompt";
+    font-weight: 600;
+    font-size: 70px;
+    margin-top: -20px;
+    align-items: center;
+    justify-content: center;
+    color: #8961df;
+  }
+  
+  .video-canvas-wrapper {
+    position: relative;
+    width: 640px;
+    height: 480px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .video-element {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .canvas-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  
+  .capture-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .frame-border {
+    width: 300px;
+    height: 300px;
+    border: 3px dashed rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+  }
+  
+  .countdown-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 10;
+  }
+  
+  .countdown-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgba(137, 97, 223, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0 auto 1rem;
+    animation: pulse 1s infinite alternate;
+  }
+  
+  @keyframes pulse {
+    from { transform: translate(-50%, -50%) scale(1); }
+    to { transform: translate(-50%, -50%) scale(1.1); }
+  }
+  
+  .results-display {
+    margin-top: 2rem;
+    text-align: center;
+    width: 100%;
+    max-width: 640px;
+  }
+  
+  .asymmetry-score {
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .asymmetry-score.low {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+  }
+  
+  .asymmetry-score.medium {
+    background-color: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+  }
+  
+  .asymmetry-score.high {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+  }
+  
+  .score-value {
+    font-size: 1.8rem;
+    color: #8961df;
+  }
+  
+  .instructions {
+    color: #4a5568;
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+  
+  .captured-image-preview {
+    margin-top: 1rem;
+  }
+  
+  .captured-image-preview img {
+    max-width: 200px;
+    border-radius: 8px;
+    border: 2px solid #e2e8f0;
+  }
+  
+  .loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 480px;
+  }
+  
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: #8961df;
+    animation: spin 1s ease-in-out infinite;
+    margin-bottom: 1rem;
+  }
+  .face-asymmetry-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+    font-family: 'Prompt', sans-serif;
+    background-color: #ffffff;
+  }
+  
+  /* ... (keep all previous CSS styles) */
+  
+  .score-display {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2d3748;
+  }
+  
+  .score-value {
+    font-weight: bold;
+    color: #3b82f6;
+  }
+  
+  .result-text {
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  
+  .result-text.symmetrical {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+  }
+  
+  .result-text.asymmetrical {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  @media (max-width: 768px) {
+    .video-canvas-wrapper {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4/3;
+    }
+    
+    .frame-border {
+      width: 200px;
+      height: 200px;
+    }
+    
+    .face-asymmetry-title {
+      font-size: 1.5rem;
+    }
+    
+    .asymmetry-score {
+      font-size: 1.2rem;
+    }
+    
+    .instructions {
+      font-size: 1rem;
+    }
+  }

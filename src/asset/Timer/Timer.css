@@ -1,0 +1,43 @@
+.timer {
+    font-family: "Poppins";
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    letter-spacing: 1px;
+}
+
+.StartButton {
+    border: none;
+    outline: none;
+    background-color: #23AE96;
+    width: 200px;
+    height: 50px;
+    border-radius: 50px;
+    color: white;
+    font-family: "Prompt";
+    font-size: 25px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.StartButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+
+.timer-message {
+    font-size: 30px;
+    color: 23AE96;
+    font-family: "Prompt";
+  }
+  
+  .timer {
+    text-align: center;
+    margin: 20px;
+  }

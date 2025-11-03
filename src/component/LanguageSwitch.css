@@ -1,0 +1,48 @@
+.lang-toggle {
+  width: 100px;
+  height: 42px;
+  background: #e4e4e4;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  padding: 0 4px;
+  transition: background 0.3s ease;
+  user-select: none;
+  gap: 5px;
+}
+
+.lang-option {
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  color: #888;
+  z-index: 1;
+  font-size: 18px;
+}
+
+.lang-option.active {
+  color:#166989;
+}
+
+.lang-toggle::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 6px;
+  width: 45px;
+  height: 36px;
+  border-radius: 999px;
+  background-color: white;
+  transition: left 0.3s ease;
+  z-index: 0;
+}
+
+.lang-toggle.right::before {
+  left: 50px;
+}
+
+.lang-toggle::after {
+  left: 50px;
+}

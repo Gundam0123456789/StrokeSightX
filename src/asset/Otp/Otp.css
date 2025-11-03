@@ -1,0 +1,35 @@
+/* Center container */
+.OTP_input_field {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    padding-top: 150px;
+  }
+  
+.otp-input {
+    height: 60px !important;  /* Increase height */
+    width: 50px !important;   /* Increase width */
+    font-size: 20px !important;
+    border: 1.5px solid #166989 !important;
+    border-radius: 5px !important;
+    margin: 10px !important;
+    text-align: center !important;
+}
+  /* Center OTP inputs */
+  /* Button styles */
+.button1 {
+    height: 60px;
+    width: 150px;
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: #23AE96;
+    border-radius: 50px;
+    color: white;
+    font-family: "Prompt";
+  }
+  

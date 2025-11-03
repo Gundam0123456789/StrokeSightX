@@ -1,0 +1,50 @@
+/* Clickable row */
+.chk {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+/* Custom checkbox box */
+.BTN-yesno {
+  width: clamp(1.4rem, 2.6vw, 2.2rem);
+  height: clamp(1.2rem, 2.2vw, 2rem);
+  appearance: none;
+  border: 2px solid #616edf;
+  border-radius: 0.6rem;
+  background: #fff;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  transition: background .15s ease, box-shadow .15s ease;
+}
+
+/* checkmark */
+.BTN-yesno::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-58%);
+  font-size: 0.95rem;
+  line-height: 1;
+  color: transparent;            /* hidden by default */
+  transition: color .15s ease;
+}
+
+/* checked state */
+.BTN-yesno:checked {
+  background: #616edf;
+  box-shadow: 0 0 0 2px rgba(97,110,223,.15) inset;
+}
+.BTN-yesno:checked::after {
+  color: #fff;                   /* show checkmark */
+}
+
+/* the text */
+.yesno-label {
+  color: #333;
+  font-size: clamp(0.85rem, 1vw, 1rem);
+  line-height: 1.1;
+}

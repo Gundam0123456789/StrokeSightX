@@ -1,0 +1,262 @@
+import React, { useState, useEffect } from 'react';
+import { db } from '../auth.js';
+import { collection, addDoc } from 'firebase/firestore';
+import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import './LoginRegister.css';
+
+const PatientTopForm = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    surname: '',
+    birthDate: '',
+    age: '',
+    idCard: '',
+    gender: '',
+    disease: '',
+    phone: '',
+  });
+
+  const [isSaved, setIsSaved] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [firebaseInitialized, setFirebaseInitialized] = useState(false);
+
+  // Verify Firebase connection on component mount
+  useEffect(() => {
+    try {
+      if (db) {
+        console.log('Firebase Firestore is properly initialized');
+        setFirebaseInitialized(true);
+      } else {
+        console.error('Firestore instance is not available');
+      }
+    } catch (error) {
+      console.error('Firebase initialization error:', error);
+    }
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  // Calculate age based on Thai year (+543)
+  useEffect(() => {
+    if (formData.birthDate) {
+      try {
+        const birthYear = new Date(formData.birthDate).getFullYear() + 543;
+        const currentYear = new Date().getFullYear() + 543;
+        const calculatedAge = currentYear - birthYear;
+        setFormData(prev => ({ ...prev, age: calculatedAge.toString() }));
+      } catch (error) {
+        console.error('Date calculation error:', error);
+      }
+    }
+  }, [formData.birthDate]);
+
+  const validateForm = () => {
+    const errors = [];
+    
+    if (!formData.name.trim() || !/^[ก-๙\s]+$/.test(formData.name.trim())) {
+      errors.push('ชื่อต้องเป็นภาษาไทยเท่านั้น');
+    }
+    
+    if (!formData.surname.trim() || !/^[ก-๙\s]+$/.test(formData.surname.trim())) {
+      errors.push('สกุลต้องเป็นภาษาไทยเท่านั้น');
+    }
+    
+    if (!formData.idCard.trim() || !/^\d{13}$/.test(formData.idCard.trim())) {
+      errors.push('เลขบัตรประชาชนต้องมี 13 หลัก');
+    }
+    
+    if (!formData.gender) {
+      errors.push('กรุณาเลือกเพศ');
+    }
+    
+    if (!formData.phone.trim() || !/^\d{10}$/.test(formData.phone.trim())) {
+      errors.push('เบอร์โทรศัพท์ต้องมี 10 หลัก');
+    }
+    
+    if (!formData.birthDate) {
+      errors.push('กรุณากรอกวันเกิด');
+    }
+    
+    return errors;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!firebaseInitialized) {
+      Swal.fire('ระบบผิดปกติ', 'ไม่สามารถเชื่อมต่อฐานข้อมูลได้', 'error');
+      return;
+    }
+
+    setIsSubmitting(true);
+    const validationErrors = validateForm();
+    
+    if (validationErrors.length > 0) {
+      Swal.fire({
+        title: 'กรุณาตรวจสอบข้อมูล',
+        html: validationErrors.map(err => `• ${err}`).join('<br>'),
+        icon: 'error'
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      // Add document to Firestore
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("การเชื่อมต่อนานเกินไป")), 20000)
+      );
+      
+      const saveOperation = addDoc(collection(db, 'patients_topform'), {
+        ...formData,
+        fullName: `${formData.name} ${formData.surname}`,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      });
+      
+      const docRef = await Promise.race([saveOperation, timeoutPromise]);
+      
+      
+      console.log('Document successfully written with ID:', docRef.id);
+      
+      // Store patient name in localStorage
+      localStorage.setItem('patientName', `${formData.name} ${formData.surname}`);
+      localStorage.setItem('patientId', docRef.id);
+      
+      await Swal.fire({
+        title: 'บันทึกสำเร็จ',
+        text: 'ข้อมูลถูกบันทึกเรียบร้อยแล้ว',
+        icon: 'success',
+        confirmButtonText: 'ตกลง'
+      });
+      
+      setIsSaved(true);
+    } catch (error) {
+      console.error('Firestore error:', error);
+      await Swal.fire({
+        title: 'เกิดข้อผิดพลาด',
+        text: `ไม่สามารถบันทึกข้อมูลได้: ${error.message}`,
+        icon: 'error',
+        confirmButtonText: 'เข้าใจแล้ว'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="patient-form-container">
+      <h2 className="form-title">🩺 กรอกข้อมูลส่วนตัวผู้ป่วย</h2>
+
+      <form onSubmit={handleSubmit} className="patient-form">
+        <div className="form-group">
+          <label>ชื่อ (ภาษาไทย)</label>
+          <input
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            pattern="[ก-๙\s]+"
+            title="กรุณากรอกชื่อเป็นภาษาไทยเท่านั้น"
+          />
+        </div>
+
+        <div className="form-group">
+          <label>สกุล (ภาษาไทย)</label>
+          <input
+            name="surname"
+            value={formData.surname}
+            onChange={handleChange}
+            required
+            pattern="[ก-๙\s]+"
+            title="กรุณากรอกสกุลเป็นภาษาไทยเท่านั้น"
+          />
+        </div>
+
+        <div className="form-group">
+          <label>วันเกิด</label>
+          <input
+            type="date"
+            name="birthDate"
+            value={formData.birthDate}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>เลขบัตรประชาชน (13 หลัก)</label>
+          <input
+            name="idCard"
+            value={formData.idCard}
+            onChange={handleChange}
+            required
+            pattern="\d{13}"
+            title="กรุณากรอกเลขบัตรประชาชน 13 หลัก"
+          />
+        </div>
+
+        <div className="form-group">
+          <label>เพศ</label>
+          <select
+            name="gender"
+            value={formData.gender}
+            onChange={handleChange}
+            required
+          >
+            <option value="">เลือกเพศ</option>
+            <option value="ชาย">ชาย</option>
+            <option value="หญิง">หญิง</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label>โรคประจำตัว (ถ้ามี)</label>
+          <input
+            name="disease"
+            value={formData.disease}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>เบอร์โทรศัพท์ (10 หลัก)</label>
+          <input
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            required
+            pattern="\d{10}"
+            title="กรุณากรอกเบอร์โทรศัพท์ 10 หลัก"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="submit-btn"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? (
+            <span>กำลังบันทึก...</span>
+          ) : (
+            <span>✅ บันทึกข้อมูล</span>
+          )}
+        </button>
+      </form>
+
+      {isSaved && (
+        <div className="next-page-container">
+          <Link to="/BEFAST_MAIN_BALANCE" className="next-page-btn">
+            ไปหน้าถัดไป
+          </Link>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default PatientTopForm;

@@ -1,0 +1,149 @@
+
+  .balance-yes1 {
+    justify-self: center; 
+  }
+  .balance-no1 {
+    justify-self: center; 
+  }  
+  .eye-yes1 {
+    justify-self: center;
+  }
+  .eye-no1 {
+    justify-self: center;
+  }  
+  .face-yes1 {
+    justify-self: center;
+  }
+  .face-no1 {
+    justify-self: center;
+  }  
+  .arm-yes1 {
+    justify-self: center;
+  }
+  .arm-no1 {
+    justify-self: center;
+  }
+  .speech-yes1 {
+    justify-self: center;
+  }
+  .speech-no1 {
+    justify-self: center;
+  }
+
+  .Box-risk{
+    display: flex;
+    justify-self: center;
+    justify-content: space-between;
+    width: 70%;
+    margin-top: 2vw;
+
+  }
+
+  .risk{
+    align-content: center;
+    padding-left: 3vw;
+    font-size: 4vw;
+    font-weight: bold ;
+    width: 55%;
+    height: 10vw;
+    border: 3px solid black;
+    border-radius: 2vw;
+  }
+  .risk2{
+    display: flex;
+    justify-self: end;
+    align-content: center;
+    margin-top: -6vw;
+    margin-right: 3vw;
+    font-size: 4vw;
+    font-weight: bold ;
+  }
+  .risk3{
+    display: flex;
+    justify-content: center;
+    justify-self: end;
+    font-size: 2vw;
+    margin-right: 3vw;
+    margin-top: -1vw;
+    font-weight: bold ;
+  }
+  .consult{
+    align-content: center;
+    justify-content: center;
+    font-size: 4vw;
+    font-weight: bold ;
+    width: 35%;
+    height: 8vw;
+    padding: 1vw 2vw;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    background-color: #616EDF;
+    border-radius: 2vw;
+    margin-top: 0.5vw;
+  }
+
+
+.boxofbefast {
+  display: flex;
+  justify-self: center;
+  justify-content:space-between;
+  margin-top: 2vw;
+  width: 70%;
+  height: auto;
+  gap: 3vw;
+}
+
+.befast-item-balance {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: clamp(5rem ,10vw, 20rem);
+}
+.befast-item-eye {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: clamp(5rem ,10vw, 20rem);
+}
+.befast-item-face {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: clamp(5rem ,10vw, 20rem);
+}
+.befast-item-arm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: clamp(5rem ,10vw, 20rem);
+}
+.befast-item-speech {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: clamp(5rem ,10vw, 20rem);
+}
+.symptom-yes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2vw;
+  font-weight: bold;
+  color: black;
+  font-family: "prompt";
+  margin-top: 0.5vw;
+}
+.symptom-no {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2vw;
+  font-weight: bold;
+  color: black;
+  font-family: "prompt";
+  margin-top: 0.5vw;
+}
+
+
+

@@ -1,0 +1,55 @@
+.container {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-family: "Kanit", sans-serif;
+  color: #333;
+  text-align: center;
+}
+
+.instructions {
+  background: #e6f4ea;
+  border: 2px solid #28a745;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 2vw;
+  font-size: 1.1rem;
+  color: #155724;
+}
+
+.status {
+  font-size: 1.2vw;
+  margin-top: 30px;
+  font-weight: 600;
+}
+
+.result {
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5vw 5vw;
+  margin-top: 15px;
+  text-align: left;
+  font-size: 1.1vw; 
+}
+
+.result3{
+    font-size: 1.5vw;
+    font-weight:bolder ;
+    justify-self: center;
+}
+.result2{
+    font-size: 1.1vw;
+    font-weight:400 ;
+    justify-self: center;
+}
+.Buttonresult{
+    padding: 1vw 2vw;
+    background-color: #51CE2F;
+    color: white;
+    border-radius: 20px;
+    font-size: 1.8vw;
+    cursor: pointer;
+    margin
+    transition: background-color 0.3s;
+}

@@ -1,0 +1,66 @@
+.homepage-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: white;
+  font-family: "Poppins";
+}
+
+.homepage-card {
+  background: white;
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  text-align: center;
+  width: 350px;
+}
+
+.homepage-logo {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.room-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.room-controls input {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  text-align: center;
+}
+
+.room-controls button {
+  padding: 12px;
+  background: #6a11cb;
+  background: linear-gradient(135deg, #118acb 0%, #009111 100%);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.room-controls button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}

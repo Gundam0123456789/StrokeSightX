@@ -1,0 +1,167 @@
+.btn-dro2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 28px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  border: none;
+  background-color: #fff;
+  transition: background 0.3s ease;
+  margin-right: -1vw;
+}
+.btn-dro2:hover {
+  background-color: #ddd;
+}
+.con{
+    display: flex;
+    justify-content:space-between;
+    width: 50%;
+    margin-left: 20vw;
+    margin-top: 8vw;
+    background-color: rgb(209, 234, 255);
+    border-radius: 0 10vw 10vw 0 ;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+.con:hover,.con11:hover,.con1:hover{
+    transform: scale(1.08);  /* zoom in */
+    opacity: 0.9;           /* fade */
+    cursor: pointer;        /* pointer cursor */
+}
+.con11{
+    display: flex;
+    justify-content:space-between;
+    width: 50%;
+    margin-left: 20vw;
+    margin-top: 1vw;
+    background-color: rgb(209, 234, 255);
+    border-radius: 0 10vw 10vw 0 ;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+.con1{
+    display: flex;
+    width: 50%;
+    justify-content:space-between;
+    justify-self: flex-end;
+    justify-content: end;
+    margin-right: 20vw;
+    margin-top: 1vw;
+    background-color: aliceblue;
+    border-radius: 10vw 0 0 10vw ;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+.leftbox{
+    width: 20%;
+    height: auto;
+}
+.rightboxleft{
+    width: 70%;
+    border-radius: 0 10vw 10vw 0 ;
+    margin-right: 2vw;
+}
+.rightboxright{
+    width: 70%;
+    border-radius: 10vw 0 0 10vw ;
+}
+.size-pic{
+    display: flex;
+    width: 10vw;
+    height: auto;
+    transition: transform 0.5s ease, opacity 0.5s ease; /* smooth animation */
+}
+
+.size-pic2{
+    display: flex;
+    width: 10vw;
+    height: auto;
+    justify-self: end;
+    transition: transform 0.5s ease, opacity 0.5s ease; /* smooth animation */
+}
+.size-pic2:hover {
+  transform: scale(1.08);  
+  opacity: 0.9;           
+  cursor: pointer;        
+}
+.size-pic:hover {
+  transform: scale(1.08);  
+  opacity: 0.9;           
+  cursor: pointer;        
+}
+.All {
+    display: flex;
+    flex-direction: column;   /* แกนหลักเป็นแนวตั้ง */
+    font-size: 1.5vw;
+    font-family: 'Poppins';
+    margin-right: 1vw;
+}
+.Name1,
+.Name2,
+.text-age,
+.text-age1,
+.text-place,
+.text-place1,
+.text-work,
+.text-work1,
+.text-grade,
+.text-grade1 {
+    display: block;
+    font-family: 'Poppins';
+    font-size: 1.4vw;
+    font-weight: 300;
+    margin-right: 0.5vw;
+
+    /* 👉 เพิ่ม Transition */
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* ปรับเฉพาะที่ต่างจากค่า default */
+.Name1,
+.Name2 {
+    font-size: 2vw;
+    margin-top: 0.5vw;
+}
+.Name2,
+.text-age1,
+.text-place1,
+.text-work1,
+.text-grade1 {
+    text-align: end;
+    margin-right: 1.3vw;
+}
+.text-place,
+.text-place1 {
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-style: double;
+}
+
+/* 👉 Hover Effect ใช้กับทุก class */
+.Name1:hover,
+.text-age:hover,
+.text-place:hover,
+.text-work:hover,
+.text-grade:hover{
+    transform: scale(1.08);  /* zoom in */
+    opacity: 0.9;           /* fade */
+    cursor: pointer;        /* pointer cursor */
+    background-color: rgb(255, 254, 252);
+    color: #616edf;
+    border-radius: 20vw;
+    font-size: 2vw;
+    width: 29vw;
+}
+.Name2:hover,
+.text-age1:hover,
+.text-place1:hover,
+.text-work1:hover,
+.text-grade1:hover {
+    transform: scale(1.08);  /* zoom in */
+    opacity: 0.9;           /* fade */
+    cursor: pointer;        /* pointer cursor */
+    background-color: rgb(255, 249, 236);
+    color: #616edf;
+    border-radius: 20vw;
+    font-size: 2vw;
+}

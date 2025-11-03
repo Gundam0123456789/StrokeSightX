@@ -1,0 +1,107 @@
+.balance-container {
+  width: 80%;
+  max-width: 1200vw;
+  min-width: 10vw;
+  height: fit-content;
+  margin: auto;
+}
+
+.balance-header {
+  display: flex;
+  align-items: center;
+}
+.header-left {
+  text-align: center;
+  flex: 1;
+}
+
+.balance-title {
+  font-size: clamp(1rem, 5vw, 20rem);
+  font-weight: bold;
+  color: #6d77e8;
+  margin-bottom: 0.25rem;
+  margin-left: 20vw;
+  margin-top:1vw;
+}
+
+.balance-subtitle {
+  font-size: clamp(1rem, 2.5vw, 10rem);
+  font-weight: 600;
+  margin-left: 20vw;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: bold;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  height: fit-content;
+}
+
+.strokelogo {
+    width: 20vw;
+}
+
+.balance-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.evaluation-box {
+  border: 3px solid #6d77e8;
+  border-radius: 20px;
+  padding: 1rem 2rem;
+  width: 100%;
+  max-width: 200vw;
+  text-align: center;
+}
+
+.evaluation-title {
+  color: #6d77e8;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.camera-img {
+  width: 100%;
+  max-width: 300px;
+}
+
+.instruction-text {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.doctor-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.start-btn {
+  background-color: #35c324;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 3rem;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  margin-left: 10vw;
+  transition: 0.3s;
+}
+
+.start-btn:hover {
+  background-color: #2ba41e;
+}
+
+.doctor-img {
+  width: 32vw;
+  height: 27vw;
+  margin-left: 5vw;
+}

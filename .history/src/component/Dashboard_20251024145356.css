@@ -1,0 +1,76 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.priority-1 {
+  border: 1px solid #b8b8b8;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  height: 30vw;
+  overflow: auto;
+
+}
+
+.priority-2 {
+  border: 1px solid #b8b8b8;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  height: 20vw;
+  overflow: auto;
+}
+
+.priority-3 {
+  border: 1px solid #b8b8b8;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  height: 20vw;
+  overflow: auto;
+}
+
+
+.patient-card {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+}
+
+.patient-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.priority-1 .patient-card {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+}
+
+.priority-2 .patient-card {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+}
+
+.priority-3 .patient-card {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+}
+
+.badge {
+  font-size: 0.9em;
+  padding: 5px 10px;
+  
+}
+
+@media (max-width: 1050px) {
+    .BrainsideLeftTopDashBoard {
+        display: none;
+    }
+}
+
+.BrainsideLeftTopDashBoard {
+  transition: transform 0.1s ease;
+}
+
+.BrainsideLeftTopDashBoard:active {
+  transform: scale(0.95); /* Shrinks slightly on click */
+}
