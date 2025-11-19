@@ -61,9 +61,9 @@ export function BEFAST_MAIN_TIME() {
       });
       return;
     }
-    if (!patientName) {
+     /*if (!patientName) {
         return <Navigate to="/PatientDetail" replace />;
-      }
+      }*/ 
     const totalHours = h + m / 60;
     const TimeFactor = `${h}.${m.toString().padStart(2, "0")}`; // เช่น 2.05
 
@@ -102,7 +102,7 @@ export function BEFAST_MAIN_TIME() {
           });
         }
 
-        navigate("/tele");
+        navigate("/BEFAST_MAIN_Detail");
       } catch (error) {
         console.error("Firestore write failed:", error);
         Swal.fire({
@@ -130,22 +130,6 @@ export function BEFAST_MAIN_TIME() {
         opacity: isSubmitting ? 0.5 : 1,
       }}
     >
-      <div
-        className="StrokeAwareCenter"
-        style={{ fontWeight: "bold", letterSpacing: "5px" }}
-      >
-        B E F A S T
-      </div>
-
-      <div className="StrokeAwareTopRight">
-        Stroke Sight
-        <img
-          src={plus}
-          alt=""
-          style={{ marginLeft: "20px", marginBottom: "2px" }}
-        />
-      </div>
-
       <div className="d-flex justify-content-center gap-4 mt-4 BoxContainer">
         <div className="MiddleBoxTestRowTIME">
           <div className="insideTitleBEFAST" style={{ fontFamily: "Poppins" }}>

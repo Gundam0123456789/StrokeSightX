@@ -4,19 +4,16 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color:   #ffffff;
     padding: 2rem;
-    font-family: 'Prompt', sans-serif;
   }
   
   .face-asymmetry-title {
-    font-family: "Prompt";
-    font-weight: 600;
-    font-size: 70px;
-    margin-top: -20px;
-    align-items: center;
-    justify-content: center;
+    display: flex;
+    font-size: clamp(1rem, 5vw, 20rem);
+    font-weight: 700;
+    width: 100%;
     color: #616edf;
+    justify-content: center;
   }
   
   .video-canvas-wrapper {
@@ -142,6 +139,7 @@
     color: #4a5568;
     font-size: 1.2rem;
     line-height: 1.6;
+    margin-top: 2vw;
   }
   
   .captured-image-preview {

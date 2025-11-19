@@ -11,21 +11,14 @@ export function BEFAST_MAIN_BALANCE () {
   const patientName = localStorage.getItem('patientName');
   const { t } = useTranslation();
 
-  if (!patientName) {
+  /*if (!patientName) {
         return <Navigate to="/PatientDetail" replace />;
-      }
+      }*/ 
 
   return (
     <div>
       <div className="StrokeAwareCenter" style={{ fontWeight: 'bold', letterSpacing: "5px" }}>
       </div>
-      <div className="StrokeAwareRightTopContainer">
-        <div className="StrokeAwareTopRight">
-          Stroke Sight
-          <img src={plus} style={{marginLeft:"20px", marginBottom:"2px"}}></img>
-        </div>
-      </div>
-
       <div className="d-flex justify-content-center gap-4 mt-4 BoxContainer">
         <div className="MiddleBoxTestRowBALANCE">
           <div className="insideTitleBEFAST" style={{ fontFamily: "Poppins" }}>

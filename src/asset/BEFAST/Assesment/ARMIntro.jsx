@@ -30,19 +30,15 @@ export default function ArmIntro() {
     };
     playAudio();
   }, []);
-     if (!patientName) {
+     /*if (!patientName) {
         return <Navigate to="/PatientDetail" replace />;
-      }
+      }*/
   return (
     <>
       <div className="balance-header">
         <div className="header-left">
-          <h1 className="balance-title">ARM</h1>
-          <p className="balance-subtitle">{t("exam")}</p>
-        </div>
-    
-        <div className="header-right">
-            <img src={strokelogo} className="strokelogo"></img>
+          <div className="balance-title">ARM</div>
+          <div className="balance-subtitle">{t("exam")}</div>
         </div>
       </div>
     <div className="balance-container">

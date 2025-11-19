@@ -1,12 +1,18 @@
 .container {
-  max-width: 700px;
+  width: 70%;
   margin: 20px auto;
   padding: 10px 20px;
-  font-family: "Kanit", sans-serif;
   color: #333;
-  text-align: center;  /* ให้เนื้อหาภายในจัดกลาง */
+  text-align: center;  
 }
-
+.headerGaze{
+    display: flex;
+    font-size: clamp(1rem, 5vw, 20rem);
+    font-weight: 700;
+    width: 100%;
+    color: #616edf;
+    justify-content: center;
+}
 
 .instructions {
   background: #e6f4ea;
@@ -25,7 +31,7 @@
 }
 
 .result {
-  background: #f8f9fa;
+  background: #0080ff;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 1.5vw 5vw;
@@ -50,7 +56,7 @@
 .Buttonresult {
   display: inline-block;   /* ทำให้ปุ่มมีขนาดพอดีกับเนื้อหา */
   padding: 1vw 2vw;
-  background-color: #616edf;
+  background-color: #b6b6b6;
   color: white;
   border-radius: 10px;
   font-size: 1.8vw;
@@ -58,4 +64,26 @@
   margin: 0.8vw auto 0;
   transition: background-color 0.3s;
   text-decoration: none;
+}
+.Buttonresult.active {
+  background-color: #616edf;
+  pointer-events: auto;
+}
+.captureButton{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #616edf;
+    border: none;
+    color: #fff;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: -20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+}
+.captureButton:hover{
+    background-color: #5058c0;
 }

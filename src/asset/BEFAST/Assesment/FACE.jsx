@@ -317,9 +317,9 @@ useEffect(() => {
   // --- The rest: Render/JSX
   return (
     <div className="face-asymmetry-container">
-      <h2 className="face-asymmetry-title" style={{ color: "#616edf" }}>
-        {t('faceheader')}
-      </h2>
+      <div className="face-asymmetry-title" style={{ color: "#616edf" }}>
+        {t('face')}
+      </div>
 
       {loading ? (
         <div className="loading-spinner">

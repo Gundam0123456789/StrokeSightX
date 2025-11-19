@@ -1,0 +1,12 @@
+.containerBalance{
+    width: 70%;
+    margin: 0 auto;
+    padding: 16px;
+}
+.BALANCEheader{
+    margin-top: 1vw;
+    display: flex;
+    font-size: 4vw;
+    width: 100%;
+    color: 616;
+}

@@ -1,0 +1,16 @@
+.containerBalance{
+    width: 70%;
+    margin: 0 auto;
+    padding: 16px;
+}
+.BALANCEheader{
+    margin-top: 1vw;
+    display: flex;
+    font-size: clamp(1rem, 5vw, 20rem);
+    font-weight: 700;
+    width: 100%;
+    color: #616edf;
+}
+.instruction-popup{
+    width: 40%;
+}

@@ -1,7 +1,8 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Camera } from "@mediapipe/camera_utils";
+import "./BALANCE.css";
 import { Pose } from "@mediapipe/pose";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { doc, updateDoc } from "firebase/firestore";
 import { firestore } from "../../../component/auth";
 import BALANCEnarrator from "./NarratorAsset/BALANCEnarrator.mp3";
@@ -9,9 +10,8 @@ import Swal from "sweetalert2";
 import Audiobutton from "./NarratorAsset/Audiobutton.png";
 import Audiomutebutton from "./NarratorAsset/Audiomutebutton.png";
 import { useTranslation } from "react-i18next";
-import LanguageSwitch from "../../../component/LanguageSwitch";
 
-// ====== CONSTANTS (ย้ายขึ้นมาด้านบนเพื่อไม่ให้ถูกอ้างอิงก่อนประกาศ) ======
+// ====== CONSTANTS ======
 const HORIZONTAL_LINE_RATIO = 0.7;
 const ALLOWABLE_Y_DIFF = 0.07;
 
@@ -44,20 +44,26 @@ const BALANCE = () => {
 
   const speak = (text) => {
     const utterance = new SpeechSynthesisUtterance(text);
-    // map ภาษาแบบง่าย ๆ ตาม i18n
     const lang = i18n?.language || "th";
     utterance.lang = lang.startsWith("en") ? "en-US" : "th-TH";
     speechSynthesis.speak(utterance);
   };
 
+  // ถ้าอยากกันไม่ให้เข้าโดยไม่มี patient ให้ใช้ useEffect นี้
+  /*
   useEffect(() => {
-    if (!patientName) {
-      navigate("/PatientDetail", { replace: true });
+    if (!patientId || !patientName) {
+      Swal.fire({
+        icon: "warning",
+        title: "ไม่พบข้อมูลผู้ป่วย",
+        text: "กรุณากรอกข้อมูลผู้ป่วยก่อนทำการประเมิน",
+        confirmButtonText: "ตกลง",
+      }).then(() => navigate("/PatientDetail"));
     }
-  }, [patientName, navigate]);
+  }, [patientId, patientName, navigate]);
+  */
 
-
-  // นับถอยหลังช่วง standby (ต้องยืนให้อยู่กลางเส้นทันเวลา)
+  // นับถอยหลังช่วง standby
   useEffect(() => {
     if (!startTriggered || testPhase !== "standby" || centerCheckPassed) return;
     if (standbyTimer === 0) {
@@ -171,11 +177,15 @@ const BALANCE = () => {
     Swal.fire({
       title: t("standno"),
       icon: "warning",
+      showCancelButton: true,
       confirmButtonText: t("Next"),
+      cancelButtonText: t("retry"),
       allowOutsideClick: false,
     }).then((result) => {
       if (result.isConfirmed) {
         navigate("/BEFAST_MAIN_EYES2");
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        resetTest();
       }
     });
   };
@@ -190,7 +200,6 @@ const BALANCE = () => {
     setDeviation(null);
     setStandbyTimer(10);
 
-    // เล่นเสียงหลังผู้ใช้กดปุ่ม (user gesture) กัน autoplay block
     if (audioRef.current) {
       audioRef.current.play().catch((e) => console.warn("Play failed:", e));
     }
@@ -207,7 +216,6 @@ const BALANCE = () => {
 
     ctx.clearRect(0, 0, width, height);
     ctx.save();
-    // mirror
     ctx.translate(width, 0);
     ctx.scale(-1, 1);
 
@@ -335,17 +343,51 @@ const BALANCE = () => {
         console.error("Error updating Firebase:", err);
       }
 
+      // ✅ Swal อยู่ในฟังก์ชันนี้ ไม่ได้ลอยข้างนอก
       Swal.fire({
         title: t("standyes"),
         icon: "success",
+        showCancelButton: true,
         confirmButtonText: t("Next"),
+        cancelButtonText: t("retry"),
         allowOutsideClick: false,
       }).then((result) => {
         if (result.isConfirmed) {
           navigate("/BEFAST_MAIN_EYES2");
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          resetTest();
         }
       });
     }, 1000);
+  };
+
+  const resetTest = () => {
+    if (cameraInstance.current) {
+      try {
+        cameraInstance.current.stop();
+      } catch (e) {
+        console.warn("Error stopping camera:", e);
+      }
+      cameraInstance.current = null;
+    }
+    if (videoRef.current && videoRef.current.srcObject) {
+      videoRef.current.srcObject.getTracks().forEach((track) => track.stop());
+      videoRef.current.srcObject = null;
+    }
+
+    setBalanceScore(100);
+    setAverage(null);
+    setBalanceFlag(null);
+    setIsCalculatingAverage(false);
+    setShowInstructions(true);
+    setStartTriggered(false);
+    setTestPhase("standby");
+    setIsInCenter(false);
+    setCenterCheckPassed(false);
+    setDeviation(null);
+    setCountdown(null);
+    setStandbyTimer(10);
+    hasSpoken.current = false;
   };
 
   const toggleMute = () => {
@@ -356,35 +398,18 @@ const BALANCE = () => {
   };
 
   return (
-    <div className="container">
-      {/* Top bar: ชื่อหน้ากับสวิตช์ภาษา */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          maxWidth: 800,
-          margin: "0 auto",
-          paddingTop: 8,
-        }}
-      >
-        <div className="BALANCEheader" style={{ fontFamily: "Prompt", fontSize: 24 }}>
-          {t("balance")}
-        </div>
-      </div>
+    <div className="containerBalance">
+      <div className="BALANCEheader">{t("balance")}</div>
 
       {showInstructions && (
         <div className="instruction-popup" style={{ alignItems: "center", textAlign: "center" }}>
           <div className="popup-content" style={{ fontFamily: "Prompt" }}>
-            <h2 style={{ fontSize: "35px", marginTop: "20px", textDecoration: "underline" }}>
+            <div style={{ fontSize: "35px", marginBottom: "20px", textDecoration: "underline" }}>
               {t("howtodo")}
-            </h2>
-            <div className="instruction-steps" style={{ color: "#787878", marginLeft: "-30px" }}>
-              <div className="step">1. {t("Exforbalance1")}</div>
-              <div className="step">2. {t("Exforbalance2")}</div>
             </div>
+            <div className="step">1. {t("Exforbalance1")}</div>
+            <div className="step">2. {t("Exforbalance2")}</div>
 
-            {/* เอา autoplay ออก แล้วไปเล่นหลังผู้ใช้กด Start */}
             <audio ref={audioRef} src={BALANCEnarrator} />
 
             <div className="ismutepiccontainer">
@@ -397,7 +422,7 @@ const BALANCE = () => {
               </button>
             </div>
 
-            <button onClick={handleStart} className="insideStart" style={{ marginTop: "-20px", marginBottom: "20px" }}>
+            <button onClick={handleStart} className="insideStart">
               {t("start")}
             </button>
           </div>
@@ -407,7 +432,9 @@ const BALANCE = () => {
       <div style={{ textAlign: "center", marginTop: "15px" }}>
         {testPhase === "standby" && !isInCenter && (
           <>
-            <p style={{ fontSize: 24, fontFamily: "Prompt", fontWeight: "bold", marginTop: 20 }}>{t("stand")}</p>
+            <p style={{ fontSize: 24, fontFamily: "Prompt", fontWeight: "bold", marginTop: 20 }}>
+              {t("stand")}
+            </p>
             <p style={{ fontSize: 24, color: "#b22", fontFamily: "Prompt", marginTop: "-1vw" }}>
               {t("time")}
               {standbyTimer} {t("second")}
@@ -418,7 +445,6 @@ const BALANCE = () => {
         {testPhase === "counting" && countdown !== true && (
           <>
             <p style={{ fontSize: 24, fontFamily: "Prompt", fontWeight: "bold" }}>
-              {/* แสดง “เริ่มเดินได้” ไปแล้วผ่าน voice ที่วินาที 8 */}
               <span style={{ color: "lime" }}>{t("startwalk")}</span>{" "}
               <span style={{ fontWeight: "bold" }}> {t("timeleft")}</span>
             </p>
@@ -428,6 +454,12 @@ const BALANCE = () => {
           </>
         )}
 
+        {/* <div style={{ textAlign: "center", marginTop: "20px" }}>
+          <button className="retryButtonBalance" onClick={resetTest}>
+            ทำการประเมินใหม่อีกครั้ง
+          </button>
+        </div>*/}
+
         <video
           ref={videoRef}
           autoPlay
@@ -435,7 +467,7 @@ const BALANCE = () => {
           muted
           style={{
             position: "absolute",
-            left: "-10000px", // ซ่อนนอกจอ
+            left: "-10000px",
             top: "-9px",
             width: "1px",
             height: "1px",
@@ -463,7 +495,7 @@ const BALANCE = () => {
             background: "#f0f0f0",
             padding: "8px 16px",
             borderRadius: "8px",
-            boxShadow: "0 0 5px rgba(0,0,0,0.1)",
+            boxShadow: "0 0 5px rgba(0, 0, 0, 0.1)",
           }}
         >
           👤 {patientName}

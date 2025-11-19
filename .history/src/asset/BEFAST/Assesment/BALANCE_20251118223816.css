@@ -1,0 +1,6 @@
+.container{
+    display: flex;
+    font-size: 4vw;
+    width: 100%;
+    background-color: aquamarine;
+}

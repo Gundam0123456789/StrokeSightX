@@ -173,9 +173,9 @@ export default function GazeTest() {
     ctx.fillStyle = color;
     ctx.fill();
   };
-    if (!patientName) {
+    /*if (!patientName) {
         return <Navigate to="/PatientDetail" replace />;
-      }
+      }*/
   /* ───────────────── capture logic ────────────────────────────────────────── */
   function handleCapture() {
     if (!iris) return setStatus(t("notfound"));
@@ -217,17 +217,20 @@ export default function GazeTest() {
       { label: t("righteye"),  data: moveRight, borderColor: "#36a2eb", tension: 0.3 },
     ],
   };
-
+  const canProceed = step === "done";
+  const handleNext = () => {   
+  navigate("/BEFAST_MAIN_FACE");         
+};
   /* ───────────────── UI ───────────────────────────────────────────────────── */
   return (
     <div className="container">
-      <h1 style={{fontFamily:"poppins"}}> Iris Gaze Calibration</h1>
-      <p className="instructions">
+      <div className="headerGaze"> {t("eye")}</div>
+      <div className="instructions">
         <strong>{t("instruction")}</strong> {t("center")}<br />
         {t("center1")}<span style={{ color: "#28a745" }}>{t("green")}</span>
         {t("spacebar")}
-      </p>
-
+      </div>
+    
       <video ref={videoRef} style={{ display: "none" }} />
       <canvas
         ref={canvasRef}
@@ -235,15 +238,21 @@ export default function GazeTest() {
       />
 
       <p className="status">{status}</p>
-
-      {summary && (
-        <div className="result">
-          <Link to="/BEFAST_MAIN_FACE" className='Buttonresult'>{t("Next")}</Link>
-        </div>
-      )}
+            <button
+              onClick={handleCapture}
+              className="captureButton"
+            >
+              คาลิเบรต
+            </button>
+          <button
+            className={`Buttonresult ${canProceed ? "active" : ""}`}
+            disabled={!canProceed}
+            onClick={handleNext}
+          >
+            {t("Next")}
+          </button>
 
       <div style={{ maxWidth: 600, marginTop: 20 }}>
-        <Line data={chartData} />
       </div>  
         {patientName && (
         <div style={{

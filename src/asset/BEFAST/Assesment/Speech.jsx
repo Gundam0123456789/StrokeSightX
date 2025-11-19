@@ -28,7 +28,7 @@ const SpeechEvaluationApp = () => {
 
   const { transcript, resetTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition();
 
-  useEffect(() => {
+  /*useEffect(() => {
     const id = localStorage.getItem('patientId') || localStorage.getItem('patientName');
     if (!id) {
       Swal.fire({
@@ -41,7 +41,7 @@ const SpeechEvaluationApp = () => {
     } else {
       setAllowed(true);
     }
-  }, [navigate]);
+  }, [navigate]);*/
 
   const getScore = (spoken) => {
     const similarity = stringSimilarity.compareTwoStrings((spoken || '').trim(), task.text.trim());
@@ -49,9 +49,9 @@ const SpeechEvaluationApp = () => {
     if (similarity >= 0.5) return 1;
     return 2;
   };
-    if (!patientName) {
+    /*if (!patientName) {
         return <Navigate to="/PatientDetail" replace />;
-      }
+      }*/
   // ❗️บันทึกผลอย่างเดียว ไม่ navigate ในนี้
   const storeSpeechResult = async (resultObj) => {
     const docId = localStorage.getItem('patientId') || localStorage.getItem('patientName');
@@ -110,8 +110,8 @@ const SpeechEvaluationApp = () => {
     setResult(null);
   };
 
-  if (allowed === null) return <div className="spe-loading">Loading...</div>;
-  if (allowed === false) return null;
+  /*if (allowed === null) return <div className="spe-loading">Loading...</div>;
+  if (allowed === false) return null;*/
 
   if (!browserSupportsSpeechRecognition) {
     return (
@@ -128,8 +128,8 @@ const SpeechEvaluationApp = () => {
     <div className="spe-container">
       <div className="spe-card">
         <div className="spe-header">
-          <h1 style={{ fontSize: '40px' }}>{t("speechhead1")}</h1>
-          <p style={{ fontSize: '20px' }}>{t("speechhead2")}</p>
+          <div style={{ fontSize: '40px' }}>{t("speechhead1")}</div>
+          <div style={{ fontSize: '20px' }}>{t("speechhead2")}</div>
         </div>
 
         {!isComplete ? (
@@ -158,8 +158,7 @@ const SpeechEvaluationApp = () => {
                     </>
                   ) : (
                     <>
-                      <div className="spe-mic-icon" />
-                      <span>เริ่มพูด</span>
+                      <div>เริ่มพูด</div>
                     </>
                   )}
                 </div>

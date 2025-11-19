@@ -20,14 +20,12 @@
   font-weight: bold;
   color: #6d77e8;
   margin-bottom: 0.25rem;
-  margin-left: 20vw;
   margin-top:1vw;
 }
 
 .balance-subtitle {
   font-size: clamp(1rem, 2.5vw, 10rem);
   font-weight: 600;
-  margin-left: 20vw;
 }
 
 .header-right {
@@ -39,6 +37,7 @@
   padding: 0.5rem 1rem;
   border-radius: 8px;
   height: fit-content;
+  background-color: aqua;
 }
 
 .strokelogo {

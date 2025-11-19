@@ -29,9 +29,9 @@ export default function BalanceIntro() {
     };
     playAudio();
   }, []);
-      if (!patientName) {
+      /*if (!patientName) {
         return <Navigate to="/PatientDetail" replace />;
-      }
+      }*/
   return (
     <>
       <div className="balance-header">
@@ -40,9 +40,6 @@ export default function BalanceIntro() {
           <div className="balance-subtitle">{t("exam")}</div>
         </div>
     
-        <div className="header-right">
-            <img src={strokelogo} className="strokelogo"></img>
-        </div>
       </div>
     <div className="balance-container">
       <div className="balance-content">

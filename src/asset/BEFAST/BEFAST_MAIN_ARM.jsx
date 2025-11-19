@@ -9,15 +9,11 @@ export function BEFAST_MAIN_ARM () {
   const { t } = useTranslation();
   const patientName = localStorage.getItem('patientName');
 
-    if (!patientName) {
-        return <Navigate to="/PatientDetail" replace />;
-      }
 
   return(
     <div>
-      <div className="StrokeAwareTopRight">
-        Stroke Sight
-      </div>
+      <div className="StrokeAwareCenter" style={{ fontWeight: 'bold', letterSpacing: "5px" }}>
+        </div>
       <div className="d-flex justify-content-center gap-4 mt-4 BoxContainer">
         <div className="MiddleBoxTestRowARM">
           <div className="insideTitleBEFAST" style={{fontFamily:"Poppins"}}>

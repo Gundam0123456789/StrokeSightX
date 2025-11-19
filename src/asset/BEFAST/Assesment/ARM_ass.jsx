@@ -8,6 +8,7 @@ import { Link, useNavigate, Navigate } from 'react-router-dom';
 import { doc, updateDoc } from 'firebase/firestore';
 import { firestore  } from '../../../component/auth';
 import Swal from 'sweetalert2';
+import { useTranslation } from "react-i18next";
 
 import Audiobutton from "./NarratorAsset/Audiobutton.png";
 import Audiomutebutton from "./NarratorAsset/Audiomutebutton.png";
@@ -34,14 +35,14 @@ const ArmStrengthTest = () => {
   const [allowed, setAllowed] = useState(null);
   const [isMuted, setIsMuted] = useState(false);
   const [armResult, setArmResult] = useState(null);
-
+  const { t, i18n } = useTranslation();
   const targetArmAngle = 90;
   const angleTolerance = 10;
   const navigate = useNavigate();
     useEffect(() => {
-    if (!patientName) {
-      navigate("/PatientDetail", { replace: true });
-    }
+    /*if (!patientName) {
+        return <Navigate to="/PatientDetail" replace />;
+      }*/
   }, [patientName, navigate]);
   useEffect(() => {
     const patientName = localStorage.getItem('patientName');
@@ -308,21 +309,21 @@ const ArmStrengthTest = () => {
 
   return (
     <div className="arm-test-container">
-      <div className='HeaderARM'>แบบประเมินภาวะอ่อนแรง</div>
+      <div className='HeaderARM'>{t("arm")}</div>
       {showPopup && (
         <div className="instruction-popup">
           <div className="popup-content" style={{ fontFamily: "Prompt" }}>
-            <h2 style={{ fontSize: "35px" }}>วิธีการประเมิน</h2>
+            <div style={{ fontSize: "35px" }}>วิธีการประเมิน</div>
             <div className="instruction-steps">
               <div className="step">1. ยืนหันข้าง 70 องศา ให้กับกล้อง</div>
               <div className="step">2. ยกแขนขึ้น 90 องศา</div>
-              <div className="step">3. ยกแขนค้างไว้ 10 วินาที</div>
+              <div className="step">3. ยกแขนค้างไว้ 15 วินาที</div>
               <div className='ArmRaiseContainer'><img src={ArmRaise} className='ArmRaise' alt="Arm Raise Example" /></div>
             </div>
             <audio ref={audioRef} src={ARMnarrator} autoPlay />
             <div className="ismutepiccontainer">
               <button onClick={toggleMute} className="ismutepicARM">
-                <img src={isMuted ? Audiobutton : Audiomutebutton} style={{width:"60px", height:"auto"}} alt="Audio Toggle" />
+                <img src={isMuted ? Audiobutton : Audiomutebutton} style={{width:"40px", height:"auto"}} alt="Audio Toggle" />
               </button>
             </div>
             <button onClick={startTest} className="insideStart">เริ่ม</button>

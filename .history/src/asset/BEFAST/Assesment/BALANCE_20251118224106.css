@@ -1,0 +1,12 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 16px;
+}
+.BALANCEheader{
+    mar
+    display: flex;
+    font-size: 4vw;
+    width: 100%;
+    background-color: aquamarine;
+}

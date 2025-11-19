@@ -1,0 +1,33 @@
+.containerBalance{
+    width: 70%;
+    margin: 0 auto;
+    padding: 16px;
+}
+.BALANCEheader{
+    margin-top: 1vw;
+    display: flex;
+    font-size: clamp(1rem, 5vw, 20rem);
+    font-weight: 700;
+    width: 100%;
+    color: #616edf;
+}
+.instruction-popup{
+    width: 44%;
+}
+.insideStart{
+    margin-top: 2vw;
+}
+.retryButtonBalance {
+  font-family: "Prompt", sans-serif;
+  padding: 8px 18px;
+  border-radius: 10px;
+  border: none;
+  background: #f1f5f9;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.retryButtonBalance:hover {
+  background: #e2e8f0;
+}

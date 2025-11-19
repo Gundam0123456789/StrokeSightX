@@ -67,7 +67,6 @@
     "speech" : "Explain how to assist with the assessment correctly"
   },
   "address" : "117 Kaeonawarat Rd, Wat Ket, Mueang Chiang Mai , Chiang Mai 50000",
-  "form" : "Insert your ID card or fill in the information",
   "or" : "or",
   "IDenter" : "Use personal ID card",
   "seacher" : "searching",
@@ -79,6 +78,7 @@
   "question5": "Use of substances, smoking, and alcohol—include amount, frequency, and duration",
   "question6": "Surgical history (if any)",
   "Next" :"Next",
+  "retry" :"Retry Assessment",
   "history" : "Patient History",
   "nohave" : "None",
   "placehold" : "Type here",
@@ -148,7 +148,8 @@
   "brainheatmap" : "NeuroSight",
   "speechhead1" : "Speech Articulation Assessment",
   "speechhead2" : "Test Your Speech Clarity",
-  "copyright" : "Copyright © 2025 StrokeSight ®"
+  "copyright" : "Copyright © 2025 StrokeSight ®",
+  "backtohome" : "Back to Home"
 
 
 }

@@ -158,7 +158,7 @@ const PatientTopForm = () => {
         icon: 'success',
         confirmButtonText: t('confirm')
       }).then(() => {
-        navigate('/BEFAST_MAIN_Detail');
+        navigate('/BEFAST_MAIN_BALANCE');
       });
 
       setIsSaved(true);
@@ -179,12 +179,11 @@ const PatientTopForm = () => {
     <>
       <div className="form-title-header">
         <div className='form-title-header'>{t('header')}</div>
-        <Link to="/BEFAST_MAIN_Detail">
+        <Link to="/BEFAST_MAIN_BALANCE">
           <img src={leftlogo} className='lefttoplogo'></img>
         </Link>
       </div>  
       <div className="patient-form-container">
-        <div className="form-title">{t('form')}</div>
         <form onSubmit={handleSubmit} className="patient-form">
           <div className="form-group">
             <div>{t('fullname')}</div>
@@ -224,13 +223,13 @@ const PatientTopForm = () => {
             <button type="submit" className="submit-btn" disabled={isSubmitting}>
               {isSubmitting ? t('load') : t('save')}
             </button>
-            <Link to="/inform" style={{textDecoration: "underline double", opacity: "0.6"}}>กลับ</Link>
+            <Link to="/inform" style={{textDecoration: "underline double", opacity: "0.6"}}>{t('backtohome')}</Link>
           </div>     
         </form>
 
         {isSaved && (
           <div className="next-page-container">
-            <Link to="/BEFAST_MAIN_Detail" className="next-page-btn">ไปหน้าถัดไป</Link>
+            <Link to="/BEFAST_MAIN_BALANCE" className="next-page-btn">ไปหน้าถัดไป</Link>
           </div>
         )}
         <audio ref={audioRef} src={personalinformation} />

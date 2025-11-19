@@ -131,12 +131,10 @@ const StrokeFormOverlay = () => {
 
   return (
     <div style={{ padding: '20px', fontFamily: "Prompt" }} ref={formRef}>
-      {/* หัวข้อชื่อผู้ป่วย */}
       <div
         style={{
           fontSize: "3vw",
           fontWeight: "bold",
-          background: "#ffff",
           padding: "8px 16px",
           borderRadius: "8px",
           display: 'inline-block'
